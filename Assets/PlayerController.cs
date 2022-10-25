@@ -17,8 +17,8 @@ public class PlayerController : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {        
-             
+    {
+        this.transform.position = Data.Instance.playerPosition;
     }
 
     // Update is called once per frame
@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
                     StartCoroutine(MoveCheck(targetLocation));
             }           
         }
-       
+        
     }
     IEnumerator MoveCheck(Vector3 targetPosition)
     {
@@ -82,6 +82,13 @@ public class PlayerController : MonoBehaviour
                  SceneManager.LoadScene("BattleScene");                
              }
         }
+    }
+
+    public void savePosition()
+    {
+        Data.Instance.saved = true;
+        Data.Instance.playerPosition = transform.position;
+        SceneManager.LoadScene("MainMenu");
     }
 
 }
